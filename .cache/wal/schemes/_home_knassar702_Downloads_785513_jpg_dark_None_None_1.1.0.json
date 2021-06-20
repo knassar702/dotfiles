@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/knassar702/Downloads/785513.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#0A060E",
+        "foreground": "#bac2c8",
+        "cursor": "#bac2c8"
+    },
+    "colors": {
+        "color0": "#0A060E",
+        "color1": "#726F5D",
+        "color2": "#747262",
+        "color3": "#767B7D",
+        "color4": "#7C827D",
+        "color5": "#7C888F",
+        "color6": "#849198",
+        "color7": "#bac2c8",
+        "color8": "#82878c",
+        "color9": "#726F5D",
+        "color10": "#747262",
+        "color11": "#767B7D",
+        "color12": "#7C827D",
+        "color13": "#7C888F",
+        "color14": "#849198",
+        "color15": "#bac2c8"
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/knassar702/Downloads/pro.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#1a1f16",
+        "foreground": "#dbd2d1",
+        "cursor": "#dbd2d1"
+    },
+    "colors": {
+        "color0": "#1a1f16",
+        "color1": "#615D65",
+        "color2": "#AA6A5D",
+        "color3": "#D99A6D",
+        "color4": "#766F87",
+        "color5": "#887A8E",
+        "color6": "#AC9EA2",
+        "color7": "#dbd2d1",
+        "color8": "#999392",
+        "color9": "#615D65",
+        "color10": "#AA6A5D",
+        "color11": "#D99A6D",
+        "color12": "#766F87",
+        "color13": "#887A8E",
+        "color14": "#AC9EA2",
+        "color15": "#dbd2d1"
+    }
+}

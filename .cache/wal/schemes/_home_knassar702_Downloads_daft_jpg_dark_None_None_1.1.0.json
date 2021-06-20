@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/knassar702/Downloads/daft.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#020102",
+        "foreground": "#7cb5c6",
+        "cursor": "#7cb5c6"
+    },
+    "colors": {
+        "color0": "#020102",
+        "color1": "#747575",
+        "color2": "#901415",
+        "color3": "#BE1212",
+        "color4": "#A11F22",
+        "color5": "#C31414",
+        "color6": "#017696",
+        "color7": "#7cb5c6",
+        "color8": "#567e8a",
+        "color9": "#747575",
+        "color10": "#901415",
+        "color11": "#BE1212",
+        "color12": "#A11F22",
+        "color13": "#C31414",
+        "color14": "#017696",
+        "color15": "#7cb5c6"
+    }
+}

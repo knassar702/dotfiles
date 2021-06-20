@@ -1,0 +1,21 @@
+set $wallpaper /home/knassar702/Downloads/wal0.jpg
+
+set $background #0f1213
+set $foreground #dfe0df
+
+set $color0 #0f1213
+set $color1 #4B4B49
+set $color2 #6A6660
+set $color3 #8D7558
+set $color4 #DFA950
+set $color5 #A7A6A3
+set $color6 #C3C0BC
+set $color7 #dfe0df
+set $color8 #9c9c9c
+set $color9 #4B4B49
+set $color10 #6A6660
+set $color11 #8D7558
+set $color12 #DFA950
+set $color13 #A7A6A3
+set $color14 #C3C0BC
+set $color15 #dfe0df

@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/knassar702/wallset/examples/wallpapers/example-to-wallset-2.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#101618",
+        "foreground": "#be9dcb",
+        "cursor": "#be9dcb"
+    },
+    "colors": {
+        "color0": "#101618",
+        "color1": "#F69121",
+        "color2": "#6E3D86",
+        "color3": "#2D73A2",
+        "color4": "#794290",
+        "color5": "#50768F",
+        "color6": "#803F9B",
+        "color7": "#be9dcb",
+        "color8": "#856d8e",
+        "color9": "#F69121",
+        "color10": "#6E3D86",
+        "color11": "#2D73A2",
+        "color12": "#794290",
+        "color13": "#50768F",
+        "color14": "#803F9B",
+        "color15": "#be9dcb"
+    }
+}
