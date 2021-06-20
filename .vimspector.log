@@ -1,0 +1,7 @@
+2021-06-16 15:11:29,517 - INFO - **** INITIALISING NEW VIMSPECTOR SESSION ****
+2021-06-16 15:11:29,517 - INFO - API is: 
+2021-06-16 15:11:29,517 - INFO - VIMSPECTOR_HOME = /home/knassar702/.vim/plugged/vimspector
+2021-06-16 15:11:29,517 - INFO - gadgetDir = /home/knassar702/.vim/plugged/vimspector/gadgets/linux
+2021-06-16 15:11:29,517 - INFO - User Msg: Vimspector not connected, start a debug session first
+2021-06-16 15:11:43,037 - INFO - User Msg: Vimspector is not active
+2021-06-16 15:17:16,654 - INFO - User Msg: Vimspector gadget installation complete!
