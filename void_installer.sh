@@ -4,7 +4,8 @@ sudo xbps-install -S vim base-devel libX11-devel libXft-devel libXinerama-devel 
 sudo xbps-install -S void-repo-nonfree
 sudo xbps-install -Syu
 sudo xbps-install nvidia
-
+pip3 install pywal
+sudo ln -s ~/.local/bin/wal /usr/bin/wal
 mkdir ~/.cache
 cp -r .cache/* ~/.cache
 mkdir personal
