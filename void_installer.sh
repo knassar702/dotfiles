@@ -1,6 +1,8 @@
 sudo xbps-install -Syu
 sudo xbps-install -u xbps
-sudo xbps-install -S vim base-devel libX11-devel libXft-devel libXinerama-devel python3-pip git gcc mpv xorg sxhkd htop chromium kitty
+sudo xbps-install -S vim base-devel libX11-devel libXft-devel font-awesome5 libXinerama-devel python3-pip git gcc mpv xorg sxhkd htop chromium kitty
+fc-cache -fv
+sudo fc-cache -fv
 sudo xbps-install -S void-repo-nonfree
 sudo xbps-install -Syu
 sudo xbps-install nvidia
