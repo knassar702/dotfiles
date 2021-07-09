@@ -1,4 +1,3 @@
-"set laststatus=2 "
 set encoding=utf-8
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
@@ -18,6 +17,9 @@ call plug#begin('~/.vim/plugged')
    " Plug 'itchyny/lightline.vim'                       "Lightline statusbar
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " Markdown Preview
     Plug 'frazrepo/vim-rainbow'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'mhartington/oceanic-next'
     Plug 'nikvdp/ejs-syntax'
 "{{ File management }}
     Plug 'vifm/vifm.vim'                               " Vifm
@@ -167,13 +169,15 @@ set smartindent
 "set listchars=tab:>-,trail:-,nbsp:_"
 set nolist
 autocmd FileType python set omnifunc=python3complete#Complete
-set background=dark
-colorscheme onedark
+"set background=dark
+"colorscheme onedark
 set showmode
-colorscheme wal
+"colorscheme wal
 
 let g:nodejs_complete_config = {
 \  'js_compl_fn': 'jscomplete#CompleteJS',
 \  'max_node_compl_len': 15
 \}
 let g:javascript_plugin_jsdoc = 1
+
+colorscheme OceanicNext
