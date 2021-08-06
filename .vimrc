@@ -7,9 +7,17 @@ call plug#begin('~/.vim/plugged')
 	Plug 'mhartington/oceanic-next'
 	Plug 'scrooloose/nerdtree'
     Plug 'tpope/vim-fugitive'
-    Plug 'joshdick/onedark.vim'
+"    Plug 'joshdick/onedark.vim'
     Plug 'itchyny/lightline.vim'
+    Plug 'zah/nim.vim'
+    Plug 'iamcco/mathjax-support-for-mkdp'
+    Plug 'iamcco/markdown-preview.vim'
+"    Plug 'wakatime/vim-wakatime'
+    Plug 'myhere/vim-nodejs-complete'
+    Plug 't9md/vim-choosewin'
+
 call plug#end()
+
 
 filetype plugin indent on    " required
 set mouse=a
@@ -33,6 +41,7 @@ set expandtab                   " Use spaces instead of tabs.
 set smarttab                    " Be smart using tabs ;)
 set shiftwidth=4                " One tab == four spaces.
 set tabstop=4                   " One tab == four spaces.
+set cursorline                  " Line Highlight
 
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '+'
@@ -50,12 +59,15 @@ noremap <silent> <C-Up> :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
 " Change 2 split windows from vert to horiz or horiz to vert
 nmap <silent> <C-s> :w<CR>
-nmap <silent> <C-q> :q<CR>
+nmap <silent> <C-q> :q!<CR>
+nmap <silent> <C-p> :Git push origin <CR>
 nmap <silent> <C-r> :tabNext<CR>
 nmap <silent> <C-t> :tabedit<CR>
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>
-colorscheme onedark
+
+
+colorscheme OceanicNext
 
 
 let g:lightline = {
@@ -65,3 +77,8 @@ let g:lightline = {
 
 vnoremap <silent> # :s/^/#/<cr>:noh<cr>
 vnoremap <silent> -# :s/^#//<cr>:noh<cr>
+
+let g:nodejs_complete_config = {
+\  'js_compl_fn': 'jscomplete#CompleteJS',
+\  'max_node_compl_len': 15
+\}
