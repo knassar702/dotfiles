@@ -23,7 +23,7 @@ call plug#end()
 
 "tnoremap <Esc> N
 
-
+set formatoptions-=cro " disable auto comment for new lines
 filetype plugin indent on    " required
 set mouse=a
 set path+=**                                    " Searches current directory recursively.
