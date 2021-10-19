@@ -13,6 +13,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'joshdick/onedark.vim'
     Plug 'dylanaraps/wal.vim'
     Plug 'aquach/vim-http-client'
+    Plug 'ajmwagar/vim-deus'
+    Plug 'itchyny/lightline.vim'
 call plug#end()
 
 filetype plugin indent on    " required
@@ -70,4 +72,18 @@ map <Leader>tk <C-w>t<C-w>
 set showmode
 colorscheme ron
 "set paste
-colorscheme wal
+"colorscheme wal
+let g:lightline = {
+      \ 'colorscheme': 'deus',
+      \ 'active': {
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+      \ },
+      \ 'component': {
+      \   'charvaluehex': '0x%B'
+      \ },
+      \ }
+
+"colorscheme deus
+colorscheme onedark
