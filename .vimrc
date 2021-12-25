@@ -5,16 +5,20 @@ filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
 	Plug 'iamcco/markdown-preview.vim'
-	Plug 'valloric/youcompleteme'
+"    Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' }
+    Plug 'vimsence/vimsence'
 	Plug 'skywind3000/asyncrun.vim'
+    Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+    Plug 'mhartington/oceanic-next'
 	Plug 'scrooloose/nerdtree'
-    Plug 'https://github.com/zah/nim.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'joshdick/onedark.vim'
     Plug 'dylanaraps/wal.vim'
     Plug 'aquach/vim-http-client'
+    Plug 'akinsho/toggleterm.nvim'
     Plug 'ajmwagar/vim-deus'
     Plug 'itchyny/lightline.vim'
+
 call plug#end()
 
 filetype plugin indent on    " required
@@ -86,4 +90,8 @@ let g:lightline = {
       \ }
 
 "colorscheme deus
-colorscheme onedark
+"colorscheme onedark
+set noshowmode
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+colorscheme OceanicNext
