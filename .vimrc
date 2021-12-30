@@ -2,15 +2,14 @@ set encoding=utf-8
 set number
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
 call plug#begin('~/.vim/plugged')
 	Plug 'iamcco/markdown-preview.vim'
-"    Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' }
     Plug 'vimsence/vimsence'
 	Plug 'skywind3000/asyncrun.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
     Plug 'mhartington/oceanic-next'
 	Plug 'scrooloose/nerdtree'
+    Plug 'kassio/neoterm'
     Plug 'tpope/vim-fugitive'
     Plug 'joshdick/onedark.vim'
     Plug 'dylanaraps/wal.vim'
@@ -18,6 +17,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'akinsho/toggleterm.nvim'
     Plug 'ajmwagar/vim-deus'
     Plug 'itchyny/lightline.vim'
+    Plug 'karb94/neoscroll.nvim'
+    Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -67,8 +68,8 @@ nmap <silent> <C-q> :q!<CR>
 cmap <silent> <C-p> :Git push origin <CR>
 cmap <silent> <C-s> :Git show <CR>
 cmap <silent> <C-l> :Git log<CR>
-cmap <silent> <C-r> :so ~/.vimrc  <CR> " reload vimrc
-cmap <silent> <C-c> :e! ~/.vimrc  <CR> " reload vimrc
+cmap <silent> <C-r> :so ~/.config/nvim/init.vim  <CR> " reload vimrc
+cmap <silent> <C-c> :e! ~/.config/nvim/init.vim  <CR> " reload vimrc
 nmap <silent> <C-r> :tabNext<CR>
 nmap <silent> <C-t> :tabedit<CR>
 map <Leader>th <C-w>t<C-w>H
@@ -85,7 +86,8 @@ let g:lightline = {
       \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
       \ },
       \ 'component': {
-      \   'charvaluehex': '0x%B'
+      \   'charvaluehex': '0x%B',
+      \   'cocstatus':'coc#status'
       \ },
       \ }
 
@@ -95,3 +97,12 @@ set noshowmode
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 colorscheme OceanicNext
+	if has('nvim-0.4.0') || has('patch-8.2.0750')
+	  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+	  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+	  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+	  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+	  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+	  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+	endif
+
