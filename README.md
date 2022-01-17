@@ -1,11 +1,5 @@
 # my VIMRC
 
-
-![screen](screen.png)
-
-
-![discord](discord.png)
-
 install vim-plug and open vim and run `:PlugInstall` and restart vim
 
 * Auto Complete
@@ -18,3 +12,10 @@ install vim-plug and open vim and run `:PlugInstall` and restart vim
 * Git
 * HTTP Client
 * bruuh this like VSCODE
+
+
+
+![screen](screen.png)
+
+![discord](discord.png)
+
