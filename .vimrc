@@ -3,22 +3,28 @@ set number
 set nocompatible              " be iMproved, required
 filetype off                  " required
 call plug#begin('~/.vim/plugged')
+    Plug 'https://github.com/arcticicestudio/nord-vim'
 	Plug 'iamcco/markdown-preview.vim'
+    Plug 'https://github.com/gosukiwi/vim-atom-dark'
     Plug 'vimsence/vimsence'
 	Plug 'skywind3000/asyncrun.vim'
+    "Plug 'https://github.com/itchyny/lightline.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
     Plug 'mhartington/oceanic-next'
 	Plug 'scrooloose/nerdtree'
     Plug 'kassio/neoterm'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-fugitive'
     Plug 'joshdick/onedark.vim'
     Plug 'dylanaraps/wal.vim'
     Plug 'aquach/vim-http-client'
     Plug 'akinsho/toggleterm.nvim'
     Plug 'ajmwagar/vim-deus'
-    Plug 'itchyny/lightline.vim'
     Plug 'karb94/neoscroll.nvim'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'sheerun/vim-wombat-scheme'
+    Plug 'https://github.com/dracula/vim/'
 
 call plug#end()
 
@@ -78,25 +84,14 @@ set showmode
 colorscheme ron
 "set paste
 "colorscheme wal
-let g:lightline = {
-      \ 'colorscheme': 'deus',
-      \ 'active': {
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
-      \ },
-      \ 'component': {
-      \   'charvaluehex': '0x%B',
-      \   'cocstatus':'coc#status'
-      \ },
-      \ }
 
 "colorscheme deus
 "colorscheme onedark
 set noshowmode
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
-colorscheme OceanicNext
+"colorscheme OceanicNext
+colorscheme peachpuff
 	if has('nvim-0.4.0') || has('patch-8.2.0750')
 	  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 	  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
@@ -105,4 +100,39 @@ colorscheme OceanicNext
 	  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 	  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 	endif
+
+nnoremap <silent> <F3> :split term://bash <CR>
+nnoremap <silent> <F4> :split term://cargo r <CR>
+tnoremap <C-w>h <C-\><C-n><C-w>h
+tnoremap <C-w>j <C-\><C-n><C-w>j
+tnoremap <C-w>k <C-\><C-n><C-w>k
+tnoremap <C-w>l <C-\><C-n><C-w>l
+autocmd TermOpen * startinsert
+"colorscheme wombat
+"colorscheme onedark
+colorscheme atom-dark-256
+colorscheme nord
+colorscheme OceanicNext
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" powerline symbols
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'  " f/p/file-name.js
+let g:airline#extensions#tabline#formatter = 'jsformatter' " path-to/f
+let g:airline#extensions#tabline#formatter = 'unique_tail' " file-name.js
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved' " f/p/file-name.js
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.dirty='⚡'
+let g:airline_theme='tomorrow'
+
 
