@@ -15,6 +15,9 @@ install vim-plug and open vim and run `:PlugInstall` and restart vim
 
 
 
+
+![video](https://github.com/knassar702/vimrc/blob/master/vim.mp4)
+
 ![screen](screen.png)
 
 ![discord](discord.png)
