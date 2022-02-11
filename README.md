@@ -16,7 +16,10 @@ install vim-plug and open vim and run `:PlugInstall` and restart vim
 
 
 
-https://github.com/knassar702/vimrc/blob/master/vim.mp4
+
+https://user-images.githubusercontent.com/45688522/153587704-03fd4d58-b5a7-40a4-b14e-e22701612cdb.mp4
+
+
 
 ![screen](screen.png)
 
