@@ -4,12 +4,20 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 call plug#begin('~/.vim/plugged')
     Plug 'https://github.com/arcticicestudio/nord-vim'
+    Plug 'sainnhe/sonokai'
 	Plug 'iamcco/markdown-preview.vim'
+    Plug 'jacoborus/tender.vim'
+    Plug 'sonph/onehalf'
+    Plug 'puremourning/vimspector'
     Plug 'https://github.com/gosukiwi/vim-atom-dark'
-    Plug 'vimsence/vimsence'
+    Plug 'https://github.com/jesseduffield/lazygit'
 	Plug 'skywind3000/asyncrun.vim'
+    Plug 'tpope/vim-repeat'
+    Plug 'https://github.com/junegunn/fzf.vim'
+    Plug 'aurieh/discord.nvim'
     "Plug 'https://github.com/itchyny/lightline.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+    Plug 'arecarn/vim-spell-utils'
     Plug 'mhartington/oceanic-next'
 	Plug 'scrooloose/nerdtree'
     Plug 'kassio/neoterm'
@@ -101,8 +109,7 @@ colorscheme peachpuff
 	  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 	endif
 
-nnoremap <silent> <F3> :split term://bash <CR>
-nnoremap <silent> <F4> :split term://cargo r <CR>
+nnoremap <silent> <F2> :ToggleTerm direction=float <CR>
 tnoremap <C-w>h <C-\><C-n><C-w>h
 tnoremap <C-w>j <C-\><C-n><C-w>j
 tnoremap <C-w>k <C-\><C-n><C-w>k
@@ -113,6 +120,8 @@ autocmd TermOpen * startinsert
 colorscheme atom-dark-256
 colorscheme nord
 colorscheme OceanicNext
+nnoremap <A-e> i
+inoremap <A-e> <esc>l
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -134,5 +143,22 @@ let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.dirty='⚡'
 let g:airline_theme='tomorrow'
+"let g:airline#extensions#tabline#enabled = 0
+packadd termdebug
+let termdebugger = "rust-gdb"
+
+let g:vimspector_enable_mappings = 'HUMAN'
+nmap <leader>dd :call vimspector#Launch()<CR>
+nmap <leader>dx :VimspectorReset<CR>
+nmap <leader>de :VimspectorEval
+nmap <leader>dw :VimspectorWatch
+nmap <leader>do :VimspectorShowOutputlet g:vimspector_install_gadgets = [ 'debugpy', 'vscode-go', 'CodeLLDB' ]
 
 
+colorscheme tender
+"colorscheme sonokai
+"colorscheme nord
+
+
+nnoremap <C-Left> :bp<CR>
+nnoremap <C-Right> :bn<CR>
