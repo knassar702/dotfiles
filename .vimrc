@@ -28,11 +28,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'dylanaraps/wal.vim'
     Plug 'aquach/vim-http-client'
     Plug 'akinsho/toggleterm.nvim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'ajmwagar/vim-deus'
     Plug 'karb94/neoscroll.nvim'
     Plug 'ryanoasis/vim-devicons'
     Plug 'sheerun/vim-wombat-scheme'
     Plug 'https://github.com/dracula/vim/'
+    Plug 'https://github.com/ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -79,13 +81,12 @@ noremap <silent> <C-Down> :resize -3<CR>
 " Change 2 split windows from vert to horiz or horiz to vert
 nmap <silent> <C-s> :w<CR>
 nmap <silent> <C-q> :q!<CR>
-cmap <silent> <C-p> :Git push origin <CR>
-cmap <silent> <C-s> :Git show <CR>
-cmap <silent> <C-l> :Git log<CR>
 cmap <silent> <C-r> :so ~/.config/nvim/init.vim  <CR> " reload vimrc
 cmap <silent> <C-c> :e! ~/.config/nvim/init.vim  <CR> " reload vimrc
-nmap <silent> <C-r> :tabNext<CR>
-nmap <silent> <C-t> :tabedit<CR>
+"nmap <silent> <C-r> :tabNext<CR>
+"nmap <silent> <C-t> :tabedit<CR>
+nmap <silent> <C-r> :bprevious<CR>
+nmap <silent> <C-t> :bnext<CR>
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>
 set showmode
@@ -109,7 +110,7 @@ colorscheme peachpuff
 	  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 	endif
 
-nnoremap <silent> <F2> :ToggleTerm direction=float <CR>
+nnoremap <silent> <F2> :ToggleTerm<CR>
 tnoremap <C-w>h <C-\><C-n><C-w>h
 tnoremap <C-w>j <C-\><C-n><C-w>j
 tnoremap <C-w>k <C-\><C-n><C-w>k
@@ -160,5 +161,7 @@ colorscheme tender
 "colorscheme nord
 
 
-nnoremap <C-Left> :bp<CR>
-nnoremap <C-Right> :bn<CR>
+"nnoremap <C-Left> :bp<CR>
+"nnoremap <C-Right> :bn<CR>
+"nnoremap <C-Up> :FZF<CR>
+colorscheme onedark
