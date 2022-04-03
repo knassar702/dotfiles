@@ -4,6 +4,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 call plug#begin('~/.vim/plugged')
     Plug 'brentyi/isort.vim'
+    Plug 'https://github.com/sainnhe/edge'
 	Plug 'iamcco/markdown-preview.vim'
 	Plug 'skywind3000/asyncrun.vim'
     Plug 'joshdick/onedark.vim'
@@ -12,12 +13,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'https://github.com/sainnhe/vim-color-forest-night'
 	Plug 'scrooloose/nerdtree'
     Plug 'LoricAndre/OneTerm.nvim'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-fugitive'
     Plug 'aquach/vim-http-client'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'neovim/nvim-lspconfig'
+    Plug 'itchyny/lightline.vim'
+    Plug 'severij/vadelma'
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
@@ -72,10 +73,10 @@ nmap <silent> <C-s> :w<CR>
 nmap <silent> <C-q> :q!<CR>
 cmap <silent> <C-r> :so ~/.config/nvim/init.vim  <CR> " reload vimrc
 cmap <silent> <C-c> :e! ~/.config/nvim/init.vim  <CR> " reload vimrc
-"nmap <silent> <C-r> :tabNext<CR>
-"nmap <silent> <C-t> :tabedit<CR>
-nmap <silent> <C-r> :bprevious<CR>
-nmap <silent> <C-t> :bnext<CR>
+nmap <silent> <C-r> :tabNext<CR>
+nmap <silent> <C-t> :tabedit<CR>
+"nmap <silent> <C-r> :bprevious<CR>
+"nmap <silent> <C-t> :bnext<CR>
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>
 set showmode
@@ -99,9 +100,6 @@ autocmd TermOpen * startinsert
 "colorscheme wombat
 "colorscheme onedark
 
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
 
 " powerline symbols
 let g:airline#extensions#tabline#enabled = 1
@@ -123,9 +121,9 @@ packadd termdebug
 " General options
 let g:airline#extensions#tabline#show_splits = 0
 set background=dark
-colorscheme onedark
-
-
+"colorscheme onedark
+"colorscheme vadelma
+colorscheme edge
 
 set completeopt=menu,menuone,noselect
 
@@ -196,4 +194,5 @@ lua <<EOF
   require'lspconfig'.rust_analyzer.setup{
       capabilities = capabilities,
   }
+  require'lspconfig'.pyright.setup{}
 EOF
