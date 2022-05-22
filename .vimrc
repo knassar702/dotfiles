@@ -3,29 +3,74 @@ set number
 set nocompatible              " be iMproved, required
 filetype off                  " required
 call plug#begin('~/.vim/plugged')
-    Plug 'brentyi/isort.vim'
-    Plug 'https://github.com/sainnhe/edge'
-	Plug 'iamcco/markdown-preview.vim'
+    Plug 's1n7ax/nvim-terminal'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'iamcco/markdown-preview.nvim'
+    Plug 'taDachs/kit.vim'
+    Plug 'sainnhe/everforest'
+    Plug 'voldikss/vim-floaterm'
+    Plug 'github/copilot.vim'
+    Plug 'andweeb/presence.nvim'
 	Plug 'skywind3000/asyncrun.vim'
     Plug 'joshdick/onedark.vim'
-    Plug 'arcticicestudio/nord-vim'
-    Plug 'https://github.com/henrynewcomer/vim-theme-papaya'
-    Plug 'https://github.com/sainnhe/vim-color-forest-night'
 	Plug 'scrooloose/nerdtree'
     Plug 'LoricAndre/OneTerm.nvim'
     Plug 'tpope/vim-fugitive'
     Plug 'aquach/vim-http-client'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'neovim/nvim-lspconfig'
-    Plug 'itchyny/lightline.vim'
-    Plug 'severij/vadelma'
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/vim-vsnip'
 
 call plug#end()
+
+" Move to previous/next
+nnoremap <silent>    <A-,> :BufferPrevious<CR>
+nnoremap <silent>    <A-.> :BufferNext<CR>
+" Re-order to previous/next
+nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
+nnoremap <silent>    <A->> :BufferMoveNext<CR>
+" Goto buffer in position...
+nnoremap <silent>    <A-1> :BufferGoto 1<CR>
+nnoremap <silent>    <A-2> :BufferGoto 2<CR>
+nnoremap <silent>    <A-3> :BufferGoto 3<CR>
+nnoremap <silent>    <A-4> :BufferGoto 4<CR>
+nnoremap <silent>    <A-5> :BufferGoto 5<CR>
+nnoremap <silent>    <A-6> :BufferGoto 6<CR>
+nnoremap <silent>    <A-7> :BufferGoto 7<CR>
+nnoremap <silent>    <A-8> :BufferGoto 8<CR>
+nnoremap <silent>    <A-9> :BufferLast<CR>
+" Pin/unpin buffer
+nnoremap <silent>    <A-p> :BufferPin<CR>
+" Close buffer
+nnoremap <silent>    <A-c> :BufferClose<CR>
+" Wipeout buffer
+"                          :BufferWipeout<CR>
+" Close commands
+"                          :BufferCloseAllButCurrent<CR>
+"                          :BufferCloseAllButPinned<CR>
+"                          :BufferCloseBuffersLeft<CR>
+"                          :BufferCloseBuffersRight<CR>
+" Magic buffer-picking mode
+nnoremap <silent> <C-s>    :BufferPick<CR>
+" Sort automatically by...
+nnoremap <silent> <Space>bb :BufferOrderByBufferNumber<CR>
+nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
+nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
+nnoremap <silent> <Space>bw :BufferOrderByWindowNumber<CR>
+
+" Other:
+" :BarbarEnable - enables barbar (enabled by default)
+" :BarbarDisable - very bad command, should never be used
+
+
+
+
 
 filetype plugin indent on    " required
 set mouse=a
@@ -44,7 +89,6 @@ set noswapfile
 syntax enable
 let g:rehash256 = 1
 set laststatus=2
-colorscheme papaya
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -101,13 +145,7 @@ autocmd TermOpen * startinsert
 "colorscheme onedark
 
 
-" powerline symbols
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'default'  " f/p/file-name.js
-let g:airline#extensions#tabline#formatter = 'jsformatter' " path-to/f
-let g:airline#extensions#tabline#formatter = 'unique_tail' " file-name.js
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved' " f/p/file-name.js
-"let g:airline#extensions#tabline#enabled = 0
+"
 packadd termdebug
 "colorscheme tender
 "colorscheme sonokai
@@ -123,7 +161,17 @@ let g:airline#extensions#tabline#show_splits = 0
 set background=dark
 "colorscheme onedark
 "colorscheme vadelma
-colorscheme edge
+"colorscheme edge
+"set termguicolors
+"let g:tokyonight_style = 'night' " available: night, storm
+"let g:tokyonight_enable_italic = 1
+"colorscheme tokyonight
+if has('termguicolors')
+  set termguicolors
+endif
+
+
+
 
 set completeopt=menu,menuone,noselect
 
@@ -141,17 +189,17 @@ lua <<EOF
         -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
     },
-    mapping = {
-      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-      ['<C-e>'] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
     },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'vsnip' }, -- For vsnip users.
@@ -174,6 +222,7 @@ lua <<EOF
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = 'buffer' }
     }
@@ -181,6 +230,7 @@ lua <<EOF
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
       { name = 'path' }
     }, {
@@ -191,8 +241,20 @@ lua <<EOF
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require'lspconfig'.rust_analyzer.setup{
-      capabilities = capabilities,
-  }
+  require'lspconfig'.rust_analyzer.setup{}
   require'lspconfig'.pyright.setup{}
+  require'lspconfig'.tsserver.setup{}
 EOF
+
+
+
+colorscheme onedark
+
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_theme='onedark'
+"highlight Pmenu ctermbg=gray guibg=gray
+
