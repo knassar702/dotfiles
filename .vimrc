@@ -3,6 +3,9 @@ set number
 set nocompatible              " be iMproved, required
 filetype off                  " required
 call plug#begin('~/.vim/plugged')
+    Plug 'sainnhe/sonokai'
+    Plug 'tomasr/molokai'
+    Plug 'ryanoasis/vim-devicons'
     Plug 's1n7ax/nvim-terminal'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -248,13 +251,22 @@ EOF
 
 
 
-colorscheme onedark
 
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'default'
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme='onedark'
-"highlight Pmenu ctermbg=gray guibg=gray
 
+" shusia
+let g:sonokai_style = 'shusia'
+colorscheme sonokai
+let g:airline_symbols = {}
+let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved' " f/p/file-name.js
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = 'M'
+let g:airline_symbols.dirty='⚡'
+let g:airline_theme='sonokai'
