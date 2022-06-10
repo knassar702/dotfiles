@@ -3,12 +3,17 @@ set number
 set nocompatible              " be iMproved, required
 filetype off                  " required
 call plug#begin('~/.vim/plugged')
+    Plug 'kyazdani42/nvim-web-devicons' " If you want devicons
+    Plug 'noib3/nvim-cokeline'
+    Plug 'nvim-lualine/lualine.nvim'
+    Plug 'nekonako/xresources-nvim'
+    Plug 'netsgnut/arctheme.vim'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+    Plug 'netsgnut/arctheme.vim'
     Plug 'sainnhe/sonokai'
     Plug 'tomasr/molokai'
     Plug 'ryanoasis/vim-devicons'
     Plug 's1n7ax/nvim-terminal'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'iamcco/markdown-preview.nvim'
     Plug 'taDachs/kit.vim'
     Plug 'sainnhe/everforest'
@@ -23,12 +28,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'aquach/vim-http-client'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'neovim/nvim-lspconfig'
-    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh6th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/vim-vsnip'
+    Plug 'ghifarit53/tokyonight-vim'
+    Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 call plug#end()
 
@@ -137,44 +144,23 @@ let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 "colorscheme OceanicNext
 
-nnoremap <silent> <F2> :OneTerm term<CR>
-nnoremap <silent> <F1> :OneTerm <CR>
+nnoremap <silent> <F2> :split term://bash<CR>
+nnoremap <silent> <F1> :FZF <CR>
 tnoremap <C-w>h <C-\><C-n><C-w>h
 tnoremap <C-w>j <C-\><C-n><C-w>j
 tnoremap <C-w>k <C-\><C-n><C-w>k
 tnoremap <C-w>l <C-\><C-n><C-w>l
 autocmd TermOpen * startinsert
-"colorscheme wombat
-"colorscheme onedark
 
 
 "
 packadd termdebug
-"colorscheme tender
-"colorscheme sonokai
-
-
-"nnoremap <C-Left> :bp<CR>
-"nnoremap <C-Right> :bn<CR>
-"nnoremap <C-Up> :FZF<CR>
-"colorscheme onedark
-
 " General options
 let g:airline#extensions#tabline#show_splits = 0
 set background=dark
-"colorscheme onedark
-"colorscheme vadelma
-"colorscheme edge
-"set termguicolors
-"let g:tokyonight_style = 'night' " available: night, storm
-"let g:tokyonight_enable_italic = 1
-"colorscheme tokyonight
 if has('termguicolors')
   set termguicolors
 endif
-
-
-
 
 set completeopt=menu,menuone,noselect
 
@@ -247,6 +233,37 @@ lua <<EOF
   require'lspconfig'.rust_analyzer.setup{}
   require'lspconfig'.pyright.setup{}
   require'lspconfig'.tsserver.setup{}
+  require'lspconfig'.gopls.setup{}
+  require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'ayu_mirage',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+    globalstatus = false,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
+  require('cokeline').setup()
 EOF
 
 
@@ -257,16 +274,4 @@ EOF
 " shusia
 let g:sonokai_style = 'shusia'
 colorscheme sonokai
-let g:airline_symbols = {}
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved' " f/p/file-name.js
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.maxlinenr = 'M'
-let g:airline_symbols.dirty='⚡'
-let g:airline_theme='sonokai'
+source ~/.vim/plugged/minetheme/init.vim
