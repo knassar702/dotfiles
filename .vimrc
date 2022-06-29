@@ -3,7 +3,16 @@ set number
 set nocompatible              " be iMproved, required
 filetype off                  " required
 call plug#begin('~/.vim/plugged')
-    Plug 'kyazdani42/nvim-web-devicons' " If you want devicons
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
+    Plug 'kyazdani42/nvim-tree.lua'
+    Plug 'https://github.com/ghifarit53/tokyonight-vim'
+    Plug 'rcarriga/nvim-notify'
+    Plug 'sharat87/roast.vim'
+    Plug 'ellisonleao/glow.nvim'
+    Plug 'zacanger/angr.vim'
+    Plug 'ayu-theme/ayu-vim'
     Plug 'noib3/nvim-cokeline'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'nekonako/xresources-nvim'
@@ -12,7 +21,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'netsgnut/arctheme.vim'
     Plug 'sainnhe/sonokai'
     Plug 'tomasr/molokai'
-    Plug 'ryanoasis/vim-devicons'
     Plug 's1n7ax/nvim-terminal'
     Plug 'iamcco/markdown-preview.nvim'
     Plug 'taDachs/kit.vim'
@@ -28,7 +36,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'aquach/vim-http-client'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'neovim/nvim-lspconfig'
-    Plug 'hrsh6th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
@@ -108,7 +116,9 @@ set shiftwidth=4                " One tab == four spaces.
 set tabstop=4                   " One tab == four spaces.
 set nocursorline                  " Line Highlight
 
-map <C-n> :NERDTreeToggle<CR>
+map <C-c> :NERDTreeToggle<CR>
+map <C-x> :FZF<CR>
+map <C-z> :split term://bash<CR>
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 let NERDTreeShowLineNumbers=1
@@ -127,8 +137,10 @@ nmap <silent> <C-s> :w<CR>
 nmap <silent> <C-q> :q!<CR>
 cmap <silent> <C-r> :so ~/.config/nvim/init.vim  <CR> " reload vimrc
 cmap <silent> <C-c> :e! ~/.config/nvim/init.vim  <CR> " reload vimrc
+cmap <silent> <C-t> :e! ~/.to_do  <CR> " reload vimrc
 nmap <silent> <C-r> :tabNext<CR>
 nmap <silent> <C-t> :tabedit<CR>
+nmap <silent> <C-a> :bdelete<CR>
 "nmap <silent> <C-r> :bprevious<CR>
 "nmap <silent> <C-t> :bnext<CR>
 map <Leader>th <C-w>t<C-w>H
@@ -144,8 +156,8 @@ let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 "colorscheme OceanicNext
 
-nnoremap <silent> <F2> :split term://bash<CR>
-nnoremap <silent> <F1> :FZF <CR>
+cmap <silent> <F2> :split term://bash<CR>
+cmap <silent> <F1> :FZF <CR>
 tnoremap <C-w>h <C-\><C-n><C-w>h
 tnoremap <C-w>j <C-\><C-n><C-w>j
 tnoremap <C-w>k <C-\><C-n><C-w>k
@@ -163,6 +175,7 @@ if has('termguicolors')
 endif
 
 set completeopt=menu,menuone,noselect
+
 
 lua <<EOF
   -- Setup nvim-cmp.
@@ -234,10 +247,13 @@ lua <<EOF
   require'lspconfig'.pyright.setup{}
   require'lspconfig'.tsserver.setup{}
   require'lspconfig'.gopls.setup{}
+  require'lspconfig'.flow.setup{}
+
+
   require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'ayu_mirage',
+    theme = 'auto',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {},
@@ -263,28 +279,25 @@ lua <<EOF
   tabline = {},
   extensions = {}
 }
-EOF
 
-
-
-lua <<EOF
-require('cokeline').setup()
-local map = vim.api.nvim_set_keymap
-
-map('n', '<S-Tab>',   '<Plug>(cokeline-focus-prev)',  { silent = true })
-map('n', '<Tab>',     '<Plug>(cokeline-focus-next)',  { silent = true })
-map('n', '<Leader>p', '<Plug>(cokeline-switch-prev)', { silent = true })
-map('n', '<Leader>n', '<Plug>(cokeline-switch-next)', { silent = true })
-
-for i = 1,9 do
-  map('n', ('<F%s>'):format(i),      ('<Plug>(cokeline-focus-%s)'):format(i),  { silent = true })
-  map('n', ('<Leader>%s'):format(i), ('<Plug>(cokeline-switch-%s)'):format(i), { silent = true })
-end
+require("nvim-tree").setup()
 
 EOF
 
 
 " shusia
-let g:sonokai_style = 'shusia'
+"let g:sonokai_style = 'shusia'
 colorscheme sonokai
+"colorscheme ayu
 " source ~/.vim/plugged/minetheme/init.vim
+
+
+let g:presence_editing_text        = "Editing %s"
+let g:presence_file_explorer_text  = "Browsing %s"
+let g:presence_git_commit_text     = "Committing changes"
+let g:presence_plugin_manager_text = "Managing plugins"
+let g:presence_reading_text        = "Reading %s"
+let g:presence_workspace_text      = "Working on %s"
+let g:presence_line_number_text    = "Line %s out of %s"
+let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
+let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
