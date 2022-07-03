@@ -4,34 +4,15 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 call plug#begin('~/.vim/plugged')
     Plug 'ryanoasis/vim-devicons'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
-    Plug 'kyazdani42/nvim-tree.lua'
-    Plug 'https://github.com/ghifarit53/tokyonight-vim'
-    Plug 'rcarriga/nvim-notify'
-    Plug 'sharat87/roast.vim'
     Plug 'ellisonleao/glow.nvim'
-    Plug 'zacanger/angr.vim'
-    Plug 'ayu-theme/ayu-vim'
-    Plug 'noib3/nvim-cokeline'
     Plug 'nvim-lualine/lualine.nvim'
-    Plug 'nekonako/xresources-nvim'
-    Plug 'netsgnut/arctheme.vim'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-    Plug 'netsgnut/arctheme.vim'
-    Plug 'sainnhe/sonokai'
-    Plug 'tomasr/molokai'
-    Plug 's1n7ax/nvim-terminal'
-    Plug 'iamcco/markdown-preview.nvim'
-    Plug 'taDachs/kit.vim'
-    Plug 'sainnhe/everforest'
-    Plug 'voldikss/vim-floaterm'
     Plug 'github/copilot.vim'
     Plug 'andweeb/presence.nvim'
 	Plug 'skywind3000/asyncrun.vim'
     Plug 'joshdick/onedark.vim'
 	Plug 'scrooloose/nerdtree'
-    Plug 'LoricAndre/OneTerm.nvim'
     Plug 'tpope/vim-fugitive'
     Plug 'aquach/vim-http-client'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -42,52 +23,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/vim-vsnip'
-    Plug 'ghifarit53/tokyonight-vim'
-    Plug 'nvim-telescope/telescope-file-browser.nvim'
+    Plug 'kyazdani42/nvim-tree.lua'
 
 call plug#end()
-
-" Move to previous/next
-nnoremap <silent>    <A-,> :BufferPrevious<CR>
-nnoremap <silent>    <A-.> :BufferNext<CR>
-" Re-order to previous/next
-nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
-nnoremap <silent>    <A->> :BufferMoveNext<CR>
-" Goto buffer in position...
-nnoremap <silent>    <A-1> :BufferGoto 1<CR>
-nnoremap <silent>    <A-2> :BufferGoto 2<CR>
-nnoremap <silent>    <A-3> :BufferGoto 3<CR>
-nnoremap <silent>    <A-4> :BufferGoto 4<CR>
-nnoremap <silent>    <A-5> :BufferGoto 5<CR>
-nnoremap <silent>    <A-6> :BufferGoto 6<CR>
-nnoremap <silent>    <A-7> :BufferGoto 7<CR>
-nnoremap <silent>    <A-8> :BufferGoto 8<CR>
-nnoremap <silent>    <A-9> :BufferLast<CR>
-" Pin/unpin buffer
-nnoremap <silent>    <A-p> :BufferPin<CR>
-" Close buffer
-nnoremap <silent>    <A-c> :BufferClose<CR>
-" Wipeout buffer
-"                          :BufferWipeout<CR>
-" Close commands
-"                          :BufferCloseAllButCurrent<CR>
-"                          :BufferCloseAllButPinned<CR>
-"                          :BufferCloseBuffersLeft<CR>
-"                          :BufferCloseBuffersRight<CR>
-" Magic buffer-picking mode
-nnoremap <silent> <C-s>    :BufferPick<CR>
-" Sort automatically by...
-nnoremap <silent> <Space>bb :BufferOrderByBufferNumber<CR>
-nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
-nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
-nnoremap <silent> <Space>bw :BufferOrderByWindowNumber<CR>
-
-" Other:
-" :BarbarEnable - enables barbar (enabled by default)
-" :BarbarDisable - very bad command, should never be used
-
-
-
 
 
 filetype plugin indent on    " required
@@ -119,6 +57,7 @@ set nocursorline                  " Line Highlight
 map <C-c> :NERDTreeToggle<CR>
 map <C-x> :FZF<CR>
 map <C-z> :split term://bash<CR>
+map <C-e> :!bash run_test.sh <CR>
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 let NERDTreeShowLineNumbers=1
@@ -286,8 +225,6 @@ EOF
 
 
 " shusia
-"let g:sonokai_style = 'shusia'
-colorscheme sonokai
 "colorscheme ayu
 " source ~/.vim/plugged/minetheme/init.vim
 
@@ -301,3 +238,5 @@ let g:presence_workspace_text      = "Working on %s"
 let g:presence_line_number_text    = "Line %s out of %s"
 let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
 let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
+colorscheme onedark
+
