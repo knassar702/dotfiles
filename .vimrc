@@ -3,8 +3,10 @@ set number
 set nocompatible              " be iMproved, required
 filetype off                  " required
 call plug#begin('~/.vim/plugged')
+    Plug 'morhetz/gruvbox'
+    Plug 'weilbith/nvim-code-action-menu'
+    Plug 'folke/tokyonight.nvim'
     Plug 'ryanoasis/vim-devicons'
-    Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
     Plug 'ellisonleao/glow.nvim'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
@@ -24,6 +26,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/vim-vsnip'
     Plug 'kyazdani42/nvim-tree.lua'
+    Plug 'chrisdiana/itg_flat_vim'
 
 call plug#end()
 
@@ -193,17 +196,17 @@ lua <<EOF
   options = {
     icons_enabled = true,
     theme = 'auto',
-    component_separators = { left = '', right = ''},
+    component_separators = { left = '> ', right = '<'},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {},
     always_divide_middle = true,
-    globalstatus = false,
+    globalstatus = true,
   },
   sections = {
-    lualine_a = {'mode'},
+    lualine_a = {'mode','hostname','tabs'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
     lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_x = {'encoding', 'fileformat','filesize', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },
@@ -220,6 +223,9 @@ lua <<EOF
 }
 
 require("nvim-tree").setup()
+
+
+
 
 EOF
 
@@ -238,5 +244,8 @@ let g:presence_workspace_text      = "Working on %s"
 let g:presence_line_number_text    = "Line %s out of %s"
 let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
 let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
-colorscheme onedark
+let g:tokyonight_style = "night"
+colorscheme gruvbox
+"colorscheme itg_flat_transparent
+"
 
