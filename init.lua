@@ -1,19 +1,25 @@
 require('packer').startup(function(use)
+  use 'fedepujol/nv-themes'
+  use 'savq/melange'
+  use 'baskerville/bubblegum'
+  use 'w0ng/vim-hybrid'
+  use 'vijaymarupudi/nvim-fzf'
+  use 'patstockwell/vim-monokai-tasty'
+  use 'rhysd/rust-doc.vim'
+  use 'sainnhe/gruvbox-material'
+  use {"akinsho/toggleterm.nvim"}
+  use 'preservim/nerdtree'
+  use 'tpope/vim-fugitive'
+  use 'Xuyuanp/yanil'
   use "wbthomason/packer.nvim"
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-file-browser.nvim'
   use 'navarasu/onedark.nvim'
+  use 'andweeb/presence.nvim'
   use {'nvim-telescope/telescope-ui-select.nvim' }
   -- ==> Load plugins.
 	use {'nvim-lua/plenary.nvim'}
 	use {'ipod825/libp.nvim'}
-	use {
-		"ipod825/igit.nvim",
-		config = function()
-			require("igit").setup()
-		end,
-	}
-
 	use { 'camspiers/snap' }
   	use {'neovim/nvim-lspconfig'}
 	use { 'nvim-lualine/lualine.nvim',
@@ -115,8 +121,7 @@ local cmp = require'cmp'
   require'lspconfig'.tsserver.setup{}
   require'lspconfig'.gopls.setup{}
   require'lspconfig'.flow.setup{}
-
-
+  
   require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -124,11 +129,11 @@ local cmp = require'cmp'
     component_separators = { left = '> ', right = '<'},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {},
-    always_divide_middle = true,
-    globalstatus = true,
+    always_divide_middle = false,
+    globalstatus = false,
   },
   sections = {
-    lualine_a = {'mode','hostname','tabs'},
+    lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
     lualine_c = {'filename'},
     lualine_x = {'encoding', 'fileformat','filesize', 'filetype'},
@@ -160,6 +165,7 @@ require('onedark').load()
 -- You don't need to set any of these options.
 -- IMPORTANT!: this is only a showcase of how you can set default options!
 require("telescope").setup {
+  defaults = { file_ignore_patterns = {"node_modules","__pycache__","target"} },
   extensions = {
     file_browser = {
       theme = "ivy",
@@ -206,14 +212,39 @@ require("telescope").setup {
 -- To get ui-select loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require("telescope").load_extension("ui-select")
+-- The setup config table shows all available config options with their default values:
+require("presence"):setup({
+    -- General options
+    auto_update         = true,                       -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
+    neovim_image_text   = "The One True Text Editor", -- Text displayed when hovered over the Neovim image
+    main_image          = "neovim",                   -- Main image display (either "neovim" or "file")
+    client_id           = "793271441293967371",       -- Use your own Discord application client id (not recommended)
+    log_level           = nil,                        -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
+    debounce_timeout    = 10,                         -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
+    enable_line_number  = false,                      -- Displays the current line number instead of the current project
+    blacklist           = {},                         -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
+    buttons             = true,                       -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
+    file_assets         = {},                         -- Custom file asset definitions keyed by file names and extensions (see default config at `lua/presence/file_assets.lua` for reference)
 
+    -- Rich Presence text options
+    editing_text        = "Editing %s",               -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
+    file_explorer_text  = "Browsing %s",              -- Format string rendered when browsing a file explorer (either string or function(file_explorer_name: string): string)
+    git_commit_text     = "Committing changes",       -- Format string rendered when committing changes in git (either string or function(filename: string): string)
+    plugin_manager_text = "Managing plugins",         -- Format string rendered when managing plugins (either string or function(plugin_manager_name: string): string)
+    reading_text        = "Reading %s",               -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
+    workspace_text      = "Working on %s",            -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
+    line_number_text    = "Line %s out of %s",        -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
+})
 
-
--- Git
-require("igit").setup()
 
 
 -- Loading Vim Scripts
 vim.cmd('source /home/knassar702/.config/nvim/conf.vim')
 vim.cmd('source /home/knassar702/.config/nvim/binds.vim')
+
+
+
+
+
+require("toggleterm").setup{}
 

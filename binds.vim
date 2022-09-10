@@ -1,6 +1,6 @@
-map <C-x> :Telescope file_browser<CR>
-map <C-c> :Telescope find_files<CR>
-map <C-v> :split term://bash<CR>
+map <C-x> :NERDTreeToggle<CR>
+map <C-c> :FZF<CR>
+map <C-v> :ToggleTerm direction=float<CR>
 
 noremap <silent> <C-Left> :vertical resize +3<CR>
 noremap <silent> <C-Right> :vertical resize -3<CR>
@@ -16,3 +16,6 @@ nmap <silent> <C-t> :tabedit<CR>
 nmap <silent> <C-a> :bdelete<CR>
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>
+
+
+

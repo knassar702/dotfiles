@@ -24,3 +24,13 @@ set shiftwidth=4                " One tab == four spaces.
 set tabstop=4                   " One tab == four spaces.
 set nocursorline                  " Line Highlight
 set splitbelow splitright
+set noshowmode
+
+
+"colorscheme vim-monokai-tasty
+"colorscheme onedark
+"colorscheme hybrid
+"colorscheme bubblegum-256-dark
+colorscheme nv-doomone
+"highlight Pmenu ctermbg=gray guibg=black
+
