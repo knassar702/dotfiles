@@ -1,7 +1,7 @@
-map <C-x> :NERDTreeToggle<CR>
+map <C-x> :NvimTreeToggle<CR>
 map <C-c> :FZF<CR>
 map <C-v> :ToggleTerm direction=float<CR>
-
+map <C-b> :Glow ~/notes/lotus.md
 noremap <silent> <C-Left> :vertical resize +3<CR>
 noremap <silent> <C-Right> :vertical resize -3<CR>
 noremap <silent> <C-Up> :resize +3<CR>
@@ -16,6 +16,4 @@ nmap <silent> <C-t> :tabedit<CR>
 nmap <silent> <C-a> :bdelete<CR>
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>
-
-
 

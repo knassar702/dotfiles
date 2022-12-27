@@ -1,22 +1,17 @@
 require('packer').startup(function(use)
-  use 'fedepujol/nv-themes'
-  use 'savq/melange'
-  use 'baskerville/bubblegum'
-  use 'w0ng/vim-hybrid'
+    use 'skywind3000/asyncrun.vim'
+    use 'ellisonleao/glow.nvim'
+
+  use 'nvim-tree/nvim-tree.lua'
+  use 'nvim-tree/nvim-web-devicons'
+
+  use 'L3MON4D3/LuaSnip'
+  use 'ryanoasis/vim-devicons'
   use 'vijaymarupudi/nvim-fzf'
-  use 'patstockwell/vim-monokai-tasty'
-  use 'rhysd/rust-doc.vim'
-  use 'sainnhe/gruvbox-material'
-  use {"akinsho/toggleterm.nvim"}
-  use 'preservim/nerdtree'
-  use 'tpope/vim-fugitive'
-  use 'Xuyuanp/yanil'
+  use 'TimUntersberger/neogit'
   use "wbthomason/packer.nvim"
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-file-browser.nvim'
   use 'navarasu/onedark.nvim'
   use 'andweeb/presence.nvim'
-  use {'nvim-telescope/telescope-ui-select.nvim' }
   -- ==> Load plugins.
 	use {'nvim-lua/plenary.nvim'}
 	use {'ipod825/libp.nvim'}
@@ -27,7 +22,7 @@ require('packer').startup(function(use)
 	  config = function()
 	    require('lualine').setup({
 	      options = {
-		theme = "duskfox",
+		theme = "onedark",
 	      }
 	    })
 	  end,
@@ -47,9 +42,6 @@ require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
-
-
-
 
 
 local cmp = require'cmp'
@@ -114,8 +106,9 @@ local cmp = require'cmp'
   })
 
   -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  require'lspconfig'.sumneko_lua.setup{}
   require'lspconfig'.rust_analyzer.setup{}
   require'lspconfig'.pyright.setup{}
   require'lspconfig'.tsserver.setup{}
@@ -153,65 +146,6 @@ local cmp = require'cmp'
 }
 
 
-require('onedark').setup {
-    style = 'darker'
-}
-require('onedark').load()
-
-
-
-
--- Telescope
--- You don't need to set any of these options.
--- IMPORTANT!: this is only a showcase of how you can set default options!
-require("telescope").setup {
-  defaults = { file_ignore_patterns = {"node_modules","__pycache__","target"} },
-  extensions = {
-    file_browser = {
-      theme = "ivy",
-      -- disables netrw and use telescope-file-browser in its place
-      hijack_netrw = true,
-      mappings = {
-        ["i"] = {
-          -- your custom insert mode mappings
-        },
-        ["n"] = {
-          -- your custom normal mode mappings
-        },
-      },
-    },
-  },
-}
--- To get telescope-file-browser loaded and working with telescope,
--- you need to call load_extension, somewhere after setup function:
-require("telescope").load_extension "file_browser"
--- This is your opts table
-require("telescope").setup {
-  extensions = {
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
-        -- even more opts
-      }
-
-      -- pseudo code / specification for writing custom displays, like the one
-      -- for "codeactions"
-      -- specific_opts = {
-      --   [kind] = {
-      --     make_indexed = function(items) -> indexed_items, width,
-      --     make_displayer = function(widths) -> displayer
-      --     make_display = function(displayer) -> function(e)
-      --     make_ordinal = function(e) -> string
-      --   },
-      --   -- for example to disable the custom builtin "codeactions" display
-      --      do the following
-      --   codeactions = false,
-      -- }
-    }
-  }
-}
--- To get ui-select loaded and working with telescope, you need to call
--- load_extension, somewhere after setup function:
-require("telescope").load_extension("ui-select")
 -- The setup config table shows all available config options with their default values:
 require("presence"):setup({
     -- General options
@@ -236,15 +170,13 @@ require("presence"):setup({
     line_number_text    = "Line %s out of %s",        -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
 })
 
+require("nvim-tree").setup()
 
 
 -- Loading Vim Scripts
-vim.cmd('source /home/knassar702/.config/nvim/conf.vim')
-vim.cmd('source /home/knassar702/.config/nvim/binds.vim')
+vim.cmd('source /home/khaled/.config/nvim/conf.vim')
+vim.cmd('source /home/khaled/.config/nvim/binds.vim')
+vim.cmd('highlight Pmenu ctermbg=gray guibg=gray')
+-- vim.cmd('color spacegray')
 
-
-
-
-
-require("toggleterm").setup{}
-
+--vim.cmd('color plastic')

@@ -31,6 +31,6 @@ set noshowmode
 "colorscheme onedark
 "colorscheme hybrid
 "colorscheme bubblegum-256-dark
-colorscheme nv-doomone
+" colorscheme nv-doomone
 "highlight Pmenu ctermbg=gray guibg=black
 
