@@ -1,4 +1,11 @@
 require('packer').startup(function(use)
+-- Lua
+
+    use { 
+      'olivercederborg/poimandres.nvim',
+      config = function()
+      end
+    }
     use 'skywind3000/asyncrun.vim'
     use 'ellisonleao/glow.nvim'
 
@@ -8,9 +15,8 @@ require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip'
   use 'ryanoasis/vim-devicons'
   use 'vijaymarupudi/nvim-fzf'
-  use 'TimUntersberger/neogit'
   use "wbthomason/packer.nvim"
-  use 'navarasu/onedark.nvim'
+  use 'tpope/vim-fugitive'
   use 'andweeb/presence.nvim'
   -- ==> Load plugins.
 	use {'nvim-lua/plenary.nvim'}
@@ -21,9 +27,6 @@ require('packer').startup(function(use)
 	  requires = { 'kyazdani42/nvim-web-devicons', opt = true },
 	  config = function()
 	    require('lualine').setup({
-	      options = {
-		theme = "onedark",
-	      }
 	    })
 	  end,
 	}
@@ -118,7 +121,7 @@ local cmp = require'cmp'
   require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'auto',
+    theme = 'poimandres',
     component_separators = { left = '> ', right = '<'},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {},
@@ -180,3 +183,11 @@ vim.cmd('highlight Pmenu ctermbg=gray guibg=gray')
 -- vim.cmd('color spacegray')
 
 --vim.cmd('color plastic')
+require('poimandres').setup {
+  bold_vert_split = false, -- use bold vertical separators
+  dim_nc_background = false, -- dim 'non-current' window backgrounds
+  disable_background = false, -- disable background
+  disable_float_background = false, -- disable background for floats
+  disable_italics = false, -- disable italics
+}
+vim.cmd('color poimandres')
