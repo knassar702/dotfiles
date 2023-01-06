@@ -1,6 +1,15 @@
 require('packer').startup(function(use)
 -- Lua
 
+    use {
+        's1n7ax/nvim-terminal',
+        config = function()
+            vim.o.hidden = true
+            require('nvim-terminal').setup()
+        end,
+    }
+    use 'iamcco/markdown-preview.nvim'
+    use 'chrisdiana/itg_flat_vim'
     use { 
       'olivercederborg/poimandres.nvim',
       config = function()
@@ -180,14 +189,10 @@ require("nvim-tree").setup()
 vim.cmd('source /home/khaled/.config/nvim/conf.vim')
 vim.cmd('source /home/khaled/.config/nvim/binds.vim')
 vim.cmd('highlight Pmenu ctermbg=gray guibg=gray')
+vim.cmd('let mapleader = ","')
 -- vim.cmd('color spacegray')
 
 --vim.cmd('color plastic')
-require('poimandres').setup {
-  bold_vert_split = false, -- use bold vertical separators
-  dim_nc_background = false, -- dim 'non-current' window backgrounds
-  disable_background = false, -- disable background
-  disable_float_background = false, -- disable background for floats
-  disable_italics = false, -- disable italics
-}
-vim.cmd('color poimandres')
+vim.cmd('color itg_flat_transparent')
+
+require('nvim-terminal').setup()
