@@ -34,3 +34,5 @@ set noshowmode
 " colorscheme nv-doomone
 "highlight Pmenu ctermbg=gray guibg=black
 
+
+

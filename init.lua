@@ -1,6 +1,18 @@
 require('packer').startup(function(use)
 -- Lua
 
+    use "williamboman/mason.nvim" -- simple to use language server installer
+    use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
+    use 'tyrannicaltoucan/vim-deep-space'
+    use 'catppuccin/nvim'
+    use 'andersevenrud/nordic.nvim'
+    use 'xiyaowong/nvim-transparent'
+    use 'rust-lang/rust.vim'
+    use 'nvim-telescope/telescope.nvim'
+    use 'dcampos/nvim-snippy'
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+    use 'vimwiki/vimwiki'
+    use 'navarasu/onedark.nvim'
     use {
         's1n7ax/nvim-terminal',
         config = function()
@@ -8,7 +20,6 @@ require('packer').startup(function(use)
             require('nvim-terminal').setup()
         end,
     }
-    use 'iamcco/markdown-preview.nvim'
     use 'chrisdiana/itg_flat_vim'
     use { 
       'olivercederborg/poimandres.nvim',
@@ -55,6 +66,17 @@ require('packer').startup(function(use)
   end
 end)
 
+require('snippy').setup({
+    mappings = {
+        is = {
+            ['<Tab>'] = 'expand_or_advance',
+            ['<S-Tab>'] = 'previous',
+        },
+        nx = {
+            ['<leader>x'] = 'cut_text',
+        },
+    },
+})
 
 local cmp = require'cmp'
 
@@ -63,14 +85,14 @@ local cmp = require'cmp'
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
         -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        require('snippy').expand_snippet(args.body) -- For `snippy` users.
         -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
     },
     window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -118,46 +140,81 @@ local cmp = require'cmp'
   })
 
   -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require'lspconfig'.sumneko_lua.setup{}
+  --[[
+  require'lspconfig'.lua_ls.setup{}
   require'lspconfig'.rust_analyzer.setup{}
   require'lspconfig'.pyright.setup{}
+  require'lspconfig'.java_language_server.setup{
+  }
   require'lspconfig'.tsserver.setup{}
   require'lspconfig'.gopls.setup{}
   require'lspconfig'.flow.setup{}
-  
-  require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'poimandres',
-    component_separators = { left = '> ', right = '<'},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {},
-    always_divide_middle = false,
-    globalstatus = false,
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat','filesize', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  extensions = {}
+  ]]--
+
+-- Bubbles config for lualine
+-- Author: lokesh-krishna
+-- MIT license, see LICENSE for more details.
+
+-- stylua: ignore
+local colors = {
+  blue   = '#80a0ff',
+  cyan   = '#79dac8',
+  black  = '#080808',
+  white  = '#c6c6c6',
+  red    = '#ff5189',
+  violet = '#d183e8',
+  grey   = '#303030',
 }
 
+local bubbles_theme = {
+  normal = {
+    a = { fg = colors.black, bg = colors.violet },
+    b = { fg = colors.white, bg = colors.grey },
+    c = { fg = colors.black, bg = colors.black },
+  },
 
+  insert = { a = { fg = colors.black, bg = colors.blue } },
+  visual = { a = { fg = colors.black, bg = colors.cyan } },
+  replace = { a = { fg = colors.black, bg = colors.red } },
+
+  inactive = {
+    a = { fg = colors.white, bg = colors.black },
+    b = { fg = colors.white, bg = colors.black },
+    c = { fg = colors.black, bg = colors.black },
+  },
+}
+
+require('lualine').setup {
+  options = {
+    theme = bubbles_theme,
+    component_separators = '|',
+    section_separators = { left = '', right = '' },
+  },
+  sections = {
+    lualine_a = {
+      { 'mode', separator = { left = '' }, right_padding = 2 },
+    },
+    lualine_b = { 'filename', 'branch' },
+    lualine_c = { 'fileformat' ,'diff'},
+    lualine_x = {},
+    lualine_y = { 'filetype', 'progress' },
+    lualine_z = {
+      { 'location', separator = { right = '' }, left_padding = 2 },
+    },
+  },
+  inactive_sections = {
+    lualine_a = { 'filename' },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { 'location' },
+  },
+  tabline = {},
+  extensions = {},
+}
 -- The setup config table shows all available config options with their default values:
 require("presence"):setup({
     -- General options
@@ -190,9 +247,30 @@ vim.cmd('source /home/khaled/.config/nvim/conf.vim')
 vim.cmd('source /home/khaled/.config/nvim/binds.vim')
 vim.cmd('highlight Pmenu ctermbg=gray guibg=gray')
 vim.cmd('let mapleader = ","')
+local builtin = require'telescope.builtin'
+
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>dd', builtin.lsp_references, {})
 -- vim.cmd('color spacegray')
 
 --vim.cmd('color plastic')
-vim.cmd('color itg_flat_transparent')
+-- vim.cmd('color itg_flat_transparent')
+require('onedark').setup {
+    style = 'darker'
+}
+require('onedark').load()
 
 require('nvim-terminal').setup()
+
+
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+require("khaled.lsp")
