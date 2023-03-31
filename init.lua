@@ -274,3 +274,32 @@ require("mason").setup({
 })
 
 require("khaled.lsp")
+vim.cmd([[
+" Set status line colors
+hi! StatusLine  guibg=#20242b guifg=#dcdfe4
+hi! StatusLineNC guibg=#20242b guifg=#768abf
+
+" Primary colors
+hi! Normal    guifg=#d5d8da guibg=#16161c
+hi! CursorLine    guibg=#292b33
+hi! CursorColumn  guibg=#292b33
+hi! Visual    guifg=#d5d8da guibg=#4c5c77
+
+" Normal colors
+hi! Comment   guifg=#5a6b8e
+hi! Constant  guifg=#26bbd9
+hi! Identifier    guifg=#d5d8da
+hi! Statement guifg=#e95678
+hi! PreProc   guifg=#ee64ac
+hi! Type  guifg=#59e1e3
+hi! Special   guifg=#8499d6
+
+" Bright colors
+hi! CursorLineNr  guifg=#d5d8da guibg=#292b33
+hi! Cursor       guifg=#292b33 guibg=#768abf
+hi! Error        guifg=#f43753 guibg=#292b33
+hi! VisualNOS    guifg=#292b33 guibg=#d5d8da
+hi! MatchParen   guifg=#768abf guibg=#292b33
+hi! IncSearch    guifg=#292b33 guibg=#26bbd9
+hi! Search       guifg=#292b33 guibg=#768
+]])
