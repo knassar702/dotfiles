@@ -1,0 +1,29 @@
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+  for f in /etc/X11/xinit/xinitrc.d/*; do
+    [ -x "$f" ] && . "$f"
+  done
+  unset f
+fi
+
+# test for an existing bus daemon, just to be safe
+if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+  # if not found, launch a new one
+  eval `dbus-launch --sh-syntax --exit-with-session`
+  echo "D-Bus per-session daemon address is: $DBUS_SESSION_BUS_ADDRESS"
+fi
+
+xrdb -merge ~/.Xresources &
+hsetroot -cover ~/.config/.wall/macos-big-sur-2560x1440-23119.jpg &
+~/.config/polybar/launch.sh &
+setxkbmap -layout us,ar -option "grp:alt_shift_toggle,grp_led:scroll" -option ctrl:nocaps &
+xsetroot -cursor_name left_ptr &
+dunst &
+picom &
+sxhkd &
+flameshot &
+pipewire &
+pipewire-pulse &
+# pulseaudio --start &
+eval $(dbus-launch --sh-syntax --exit-with-session) &
+#exec dbus-launch mate-session
+exec dbus-launch bspwm
