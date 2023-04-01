@@ -7,7 +7,7 @@
 - Date: This module displays the current date and time.
 - SysTray: This module displays icons for running applications and services in the system tray area of the panel.
 
-## NoeVim
+## NeoVim
 - AutoCompletion (including function jumping and other useful features): This feature makes coding and writing more efficient by suggesting completions as you type and allowing you to jump to functions or variables quickly.
 - Discord Status: This module allows you to display your current Discord status in your NoeVim statusline.
 - FZF: This plugin provides a fast and powerful fuzzy search feature for finding files and text within files.
