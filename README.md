@@ -1,5 +1,8 @@
 👋 Welcome to my dotfiles repository! This is where I store my personalized desktop configuration. 🖥️
 
+![image](https://user-images.githubusercontent.com/45688522/229299485-c01b3764-3269-41aa-bbd3-34c378fefb09.png)
+
+
 ## Polybar
 - Media Controler (Browser, Spotify, media player): This module allows you to control media playback from your browser or media player directly from the Polybar panel.
 - Audio/Microphone Controler: This module allows you to control the volume and microphone settings directly from the Polybar panel.
@@ -96,5 +99,3 @@
 If you're interested in replicating my setup, feel free to clone this repository and use my dotfiles as a starting point. I recommend reading through each configuration file carefully and customizing it to suit your needs.
 
 If you have any questions or feedback, feel free to reach out to me. I hope you find my dotfiles setup useful!
-
-![image](https://user-images.githubusercontent.com/45688522/229299485-c01b3764-3269-41aa-bbd3-34c378fefb09.png)
