@@ -23,6 +23,7 @@ sxhkd &
 flameshot &
 pipewire &
 pipewire-pulse &
+keychain --agents ssh --eval id_ed25519 &
 # pulseaudio --start &
 eval $(dbus-launch --sh-syntax --exit-with-session) &
 #exec dbus-launch mate-session
