@@ -1,25 +1,16 @@
 local packer = require("packer")
-local snippy = require('snippy')
-
-
-
-
-snippy.setup({
-    mappings = {
-        is = {
-            ['<Tab>'] = 'expand_or_advance',
-            ['<S-Tab>'] = 'previous',
-        },
-        nx = {
-            ['<leader>x'] = 'cut_text',
-        },
-    },
-})
-
 
 
 packer.startup(
     function(use)
+        -- These optional plugins should be loaded directly because of a bug in Packer lazy loading
+        use 'robbles/logstash.vim'
+        use 'github/copilot.vim'
+        use 'cseelus/vim-colors-lucid'
+        use 'bluz71/vim-moonfly-colors'
+        use 'nvim-tree/nvim-web-devicons' -- OPTIONAL: for file icons
+        use 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
+        use 'romgrk/barbar.nvim'
         use "williamboman/mason.nvim" -- simple to use language server installer
         use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
         use 'tyrannicaltoucan/vim-deep-space'
@@ -83,3 +74,20 @@ packer.startup(
         require('packer').sync()
       end
 end)
+local snippy = require('snippy')
+
+
+
+
+snippy.setup({
+    mappings = {
+        is = {
+            ['<Tab>'] = 'expand_or_advance',
+            ['<S-Tab>'] = 'previous',
+        },
+        nx = {
+            ['<leader>x'] = 'cut_text',
+        },
+    },
+})
+
